@@ -1,9 +1,21 @@
 <template>
-  <div v-if="data.length !== 0" class="footer-container">
-    <label><input type="checkbox" v-model="isChecked" />全選</label>
-    <span>已完成{{ completedTodos }}/{{ data.length }}</span>
-    <button @click="deleteAllCompleteTodo">清除所有已完成事項</button>
-    <button @click="deleteAllTodo()">清除所有事項</button>
+  <div
+    class="d-flex justify-content-between form-control input-group"
+    v-if="data.length !== 0"
+  >
+    <div class="form-check mx-1">
+      <label class="form-check-label">全選</label
+      ><input class="form-check-input" type="checkbox" v-model="isChecked" />
+    </div>
+    <div>
+      <span class="mx-1">已完成{{ completedTodos }}/{{ data.length }}</span>
+      <button class="btn btn-danger" @click="deleteAllCompleteTodo">
+        清除所有已完成事項
+      </button>
+      <button class="mx-1 btn btn-danger" @click="deleteAllTodo()">
+        清除所有事項
+      </button>
+    </div>
   </div>
 </template>
 
@@ -35,12 +47,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.footer-container {
-  width: 80%;
-  margin-bottom: 5px;
-  margin-right: 5px;
-  display: flex;
-  justify-content: space-between;
-}
-</style>
+<style scoped></style>

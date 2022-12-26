@@ -1,5 +1,5 @@
 <template>
-  <ul>
+  <ul class="list-group">
     <Item
       v-for="d in data"
       :key="d.id"
@@ -18,13 +18,4 @@ export default {
 };
 </script>
 
-<style scoped>
-ul {
-  padding: 5px;
-  width: 80%;
-}
-li {
-  display: flex;
-  justify-content: space-between;
-}
-</style>
+<style scoped></style>

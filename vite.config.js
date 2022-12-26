@@ -5,27 +5,10 @@ import path from "path";
 
 export default defineConfig({
   plugins: [vue()],
+
   resolve: {
-    extensions: [
-      ".mjs",
-      ".js",
-      ".ts",
-      ".jsx",
-      ".tsx",
-      ".json",
-      ".vue",
-      ".scss",
-    ],
     alias: {
-      "@": path.resolve(__dirname, "./src"),
-      "~bootstrap": "bootstrap",
-    },
-  },
-  css: {
-    preprocessorOptions: {
-      scss: {
-        additionalData: `@import "src/assets/scss/styles.scss";`,
-      },
+      "~bootstrap": path.resolve(__dirname, "node_modules/bootstrap"),
     },
   },
 });
