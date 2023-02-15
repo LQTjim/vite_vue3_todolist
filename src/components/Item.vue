@@ -18,7 +18,7 @@
       <button class="btn btn-info mx-1" @click="updateFlag = !updateFlag">
         修改
       </button>
-      <button class="btn btn-danger" @click.once="deleteTodo(todo)">
+      <button class="btn btn-danger" @click.once="todoStore.deleteTodo(todo)">
         刪除
       </button>
     </div>
@@ -28,9 +28,13 @@
 <script>
 import { ref, computed } from "vue";
 import useInputFocus from "../hooks/useInputFocus";
+import pinia from "./../stores/store";
+import { useTodoStore } from "./../stores/todoStore";
+
 export default {
-  props: { todo: Object, updateTodo: Function, deleteTodo: Function },
+  props: { todo: Object },
   setup(props) {
+    const todoStore = useTodoStore(pinia);
     const updateFlag = ref(false);
     const inputRef = ref(null);
     const updateValue = ref("");
@@ -39,14 +43,15 @@ export default {
         return props.todo.isChecked;
       },
       set(value) {
-        props.updateTodo({ ...props.todo, isChecked: value });
+        todoStore.updateTodo({ ...props.todo, isChecked: value });
       },
     });
     function handleUpdate() {
       updateFlag.value = !updateFlag;
-      props.updateTodo({ ...props.todo, title: updateValue.value });
+      todoStore.updateTodo({ ...props.todo, title: updateValue.value });
       updateValue.value = "";
     }
+
     function inputBlur() {
       updateFlag.value = !updateFlag;
       updateValue.value = "";
@@ -59,6 +64,7 @@ export default {
       handleUpdate,
       updateValue,
       inputBlur,
+      todoStore,
     };
   },
 };

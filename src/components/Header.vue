@@ -12,15 +12,17 @@
 
 <script>
 import { ref } from "vue";
+import pinia from "./../stores/store";
+import { useTodoStore } from "./../stores/todoStore";
 export default {
-  props: { createTodo: Function },
-  setup(props) {
+  setup() {
+    const todoStore = useTodoStore(pinia);
     const value = ref("");
     function createTodoHadler() {
-      props.createTodo(value.value);
+      todoStore.createTodo(value.value);
       value.value = "";
     }
-    return { value, createTodoHadler };
+    return { value, createTodoHadler, todoStore };
   },
 };
 </script>

@@ -2,18 +2,22 @@
 import Header from "../src/components/Header.vue";
 import List from "../src/components/List.vue";
 import Footer from "../src/components/Footer.vue";
+import { useTodoStore } from "./stores/todoStore";
+const todoStore = useTodoStore();
+console.log(todoStore.todos.map((el) => el));
+/*
 import { reactive } from "vue";
 import { nanoid } from "nanoid";
-
-//for test speed:
-// let arr = new Array(20000);
-// let arr = new Array(200);
-// (function () {
-//   for (let i = 0; i < arr.length; i++) {
-//     arr[i] = { id: nanoid(5), title: i, isChecked: true };
-//   }
-// })();
-// let data = reactive(arr);
+use props translation
+for test speed:
+let arr = new Array(20000);
+let arr = new Array(200);
+(function () {
+  for (let i = 0; i < arr.length; i++) {
+    arr[i] = { id: nanoid(5), title: i, isChecked: true };
+  }
+})();
+let data = reactive(arr);
 
 let data = reactive([
   { id: nanoid(5), title: "吃飯", isChecked: true },
@@ -74,7 +78,7 @@ map也是一樣的情形
   console.timeEnd("deleteTodo");
   //deleteTodo: 57.227783203125 ms 刪除第0個
   //deleteTodo: 62.539794921875 ms 刪除第19999個
-} */
+} 
 function deleteTodo(todo) {
   console.time("deleteTodo");
   for (let i = 0; i < data.length; i++) {
@@ -100,10 +104,10 @@ function deleteAllCompleteTodo() {
 }
 function deleteAllTodo() {
   data.splice(0, data.length);
-}
+}*/
 </script>
 
-<template>
+<!-- <template>
   <div class="container">
     <Header :createTodo="createTodo" />
     <List :data="data" :updateTodo="updateTodo" :deleteTodo="deleteTodo" />
@@ -114,6 +118,9 @@ function deleteAllTodo() {
       :deleteAllTodo="deleteAllTodo"
     />
   </div>
+</template> -->
+<template>
+  <div class="container"><Header /><List /><Footer /></div>
 </template>
 
 <style scoped></style>
